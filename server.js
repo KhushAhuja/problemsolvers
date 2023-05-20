@@ -29,8 +29,7 @@ app.use("/api/posts", postsRouter);
 app.use("/api/tags", tags);
 // app.use("/api/reply", replies);
 
-app.use(express.static(path.join(__dirname,'../','/frontend/build')))
-app.get('*', (req,res) => res.sendFile(path.resolve(__dirname,'../', 'frontend', 'build','index.html')));
+
 
 
 const PORT = process.env.PORT || 4000;
