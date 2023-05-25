@@ -8,7 +8,8 @@ const userSchema=new mongoose.Schema(
         email        : { type: String, required: true, trim: true, unique:true, lowercase: true},
         hash_password: { type: String, required: true},
         country      : { type:String,  required: true, default:'India'},
-        profile_pic  : { type: String}
+        profile_pic  : { type: String},
+        submissions: { type: Number, default: 0 },
     },
     { 
         timestamps: true
