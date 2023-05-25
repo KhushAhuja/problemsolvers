@@ -14,6 +14,7 @@ exports.authUser = asyncHandler(async(req,res) => {
             name:user.name,
             email: user.email,
             country: user.country,
+            submissions: user.submissions,
             token: generateToken(user._id)
         })
     }
@@ -24,6 +25,26 @@ exports.authUser = asyncHandler(async(req,res) => {
 
 })
 
+
+exports.increment_subm = asyncHandler(async(req,res) => {
+    const {userID} = req.body;
+    const user = await User.findById(userID);
+    console.log(userID);
+    if(user){
+        user.submissions = user.submissions + 1;
+        await user.save();
+        res.json({
+            _id:user._id,
+            name:user.name,
+            email: user.email,
+            submissions: user.submissions,
+            token: generateToken(user._id)
+        })
+    }
+    else{
+        return res.status(400).json({error:"Invalid email or password"})
+    }
+})
 
 exports.registerUser = asyncHandler(async(req,res) => {
 
@@ -43,6 +64,7 @@ exports.registerUser = asyncHandler(async(req,res) => {
             _id:user._id,
             name:user.name,
             email: user.email,
+            submissions: user.submissions,
             token: generateToken(user._id)
         })
 
@@ -55,4 +77,14 @@ exports.registerUser = asyncHandler(async(req,res) => {
     }
 })
 
+//updateprofilepic in 
+// exports.updateprofilepic = asyncHandler(async(req,res) => {
+//     const {userID} = req.body;
+//     const user = await User.findById(userID);
+//     //updateprofilepic in user.profile_pic in the form of a string
+//     if(user){
 
+//         user.profile_pic = req.body.profile_pic;
+//         await user.save();
+//     }
+// })
