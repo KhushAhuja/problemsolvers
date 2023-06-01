@@ -10,6 +10,7 @@ const userSchema=new mongoose.Schema(
         country      : { type:String,  required: true, default:'India'},
         profile_pic  : { type: String},
         submissions: { type: Number, default: 0 },
+        rating: { type: Number, default: 1500 },
     },
     { 
         timestamps: true
