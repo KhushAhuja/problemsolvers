@@ -148,7 +148,7 @@ router.post("/join-request", (req, res) => {
 
   // Check if the provided code matches any of the saved codes
   const matchingCodeObject = savedCodes.find(
-    (savedCode) => savedCode.code == code
+    (savedCode) => savedCode.code === code
   );
   
 
