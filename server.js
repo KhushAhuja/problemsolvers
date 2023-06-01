@@ -15,6 +15,7 @@ const path = require("path");
 
 const postsRouter = require("./routes/posts");
 const tags = require("./routes/tags");
+const v1 = require("./routes/1v1");
 // const replies = require("./routes/replies");
 
 const bodyParser = require("body-parser");
@@ -27,20 +28,14 @@ app.use("/api/problems", problemRoutes);
 
 app.use("/api/posts", postsRouter);
 app.use("/api/tags", tags);
+app.use("/api/1v1", v1);
 // app.use("/api/reply", replies);
 
-
+// app.use(express.static(path.join(__dirname,'../','/frontend/build')))
+// app.get('*', (req,res) => res.sendFile(path.resolve(__dirname,'../', 'client', 'build','index.html')));
 
 
 const PORT = process.env.PORT || 4000;
-
-app.use(express.static(path.join(__dirname, "./frontend/build")));
-
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "./frontend/build/index.html"));
-});
-
-
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
