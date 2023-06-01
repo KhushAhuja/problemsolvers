@@ -153,7 +153,7 @@ router.post("/join-request", (req, res) => {
   
 
   if (matchingCodeObject) {
-//     const { code, problemId } = matchingCodeObject;
+    const { code, problemId } = matchingCodeObject;
     if(codeResMap.has(code)){
       const resPair = codeResMap.get(code);
       resPair.idleUserRes = userInfo.rating;
