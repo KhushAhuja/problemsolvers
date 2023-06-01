@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const Problem = require("../models/problemModel");
 const User = require("../models/userModel");
-const EloRating = require("elo-rating");
+
 
 let savedCodes = []; // Array to store the saved codes
 
