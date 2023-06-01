@@ -15,6 +15,7 @@ exports.authUser = asyncHandler(async(req,res) => {
             email: user.email,
             country: user.country,
             submissions: user.submissions,
+            rating: user.rating,
             token: generateToken(user._id)
         })
     }
@@ -38,6 +39,7 @@ exports.increment_subm = asyncHandler(async(req,res) => {
             name:user.name,
             email: user.email,
             submissions: user.submissions,
+            rating: user.rating,
             token: generateToken(user._id)
         })
     }
@@ -65,6 +67,7 @@ exports.registerUser = asyncHandler(async(req,res) => {
             name:user.name,
             email: user.email,
             submissions: user.submissions,
+            rating: user.rating,
             token: generateToken(user._id)
         })
 
@@ -76,6 +79,33 @@ exports.registerUser = asyncHandler(async(req,res) => {
         throw new Error('User Not Found')
     }
 })
+
+const sendNotificationToUser = (username) => {
+    
+ };
+
+exports.sendRequestController = async (req, res) => {
+    try {
+      const { username } = req.body;
+  
+      // Check if the username exists in the users database
+      const userExists = await checkIfUserExists(username);
+  
+      if (userExists) {
+        // Send a send-request-received API back to the frontend
+        res.json({ message: "send-request-received" });
+  
+        // Send a notification to the specified username
+        await sendNotificationToUser(username); // Implement this function
+      } else {
+        res.status(404).json({ message: "User not found" });
+      }
+    } catch (error) {
+      console.error("Error handling sendRequestController:", error);
+      res.status(500).json({ message: "Internal server error" });
+    }
+  };
+  
 
 //updateprofilepic in 
 // exports.updateprofilepic = asyncHandler(async(req,res) => {
