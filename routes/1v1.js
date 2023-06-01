@@ -148,12 +148,12 @@ router.post("/join-request", (req, res) => {
 
   // Check if the provided code matches any of the saved codes
   const matchingCodeObject = savedCodes.find(
-    (savedCode) => savedCode.code === code
+    (savedCode) => savedCode.code == code
   );
   
 
   if (matchingCodeObject) {
-    const { code, problemId } = matchingCodeObject;
+//     const { code, problemId } = matchingCodeObject;
     if(codeResMap.has(code)){
       const resPair = codeResMap.get(code);
       resPair.idleUserRes = userInfo.rating;
